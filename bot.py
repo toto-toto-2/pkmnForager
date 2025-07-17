@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord.ext import tasks
 import random
 import threading
 from flask import Flask
@@ -177,7 +178,7 @@ async def forage(ctx, location: int = None, modifier: int = None):
 
     await ctx.send(response)
 
-PING_CHANNEL_ID = https://discord.com/channels/1370063776157798531/1395390696361296043  # replace with your target channel ID
+PING_CHANNEL_ID = 1395390696361296043  # replace with your target channel ID
 
 @bot.event
 async def on_ready():

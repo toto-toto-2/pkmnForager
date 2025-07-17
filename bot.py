@@ -53,6 +53,19 @@ def roll_bonus(name):
             "Syrupy Apple", "Tart Apple", "Unremarkable Teacup", "Scroll of Darkness",
             "Scroll of Waters"
         ]
+         "Common Fishing Encounter": [
+            "Magikarp", "Magikarp", "Magikarp", "Magikarp", "Magikarp",
+            "Tentacool", "Tentacool", "Tentacool", "Tentacool", "Tentacool",
+            "Basculin", "Basculin", "Basculin", "Feebas", "Feebas"
+        ],
+        "Rare Fishing Encounter": [
+            "Finneon", "Chinchou", "Corphish", "Spheal", "Mareanie",
+            "Buizel", "Frillish", "Tympole"
+        ],
+        "Legendary Fishing Encounter": [
+            "Gyarados", "Gyarados", "Gyarados", "Gyarados", "Gyarados",
+            "Lapras", "Lapras", "Lapras", "Lapras", "Dratini"
+        ],
     }
     if name in tables:
         return f"{name} result: {random.choice(tables[name])}"

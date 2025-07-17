@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands
 import random
+import threading
+from flask import Flask
+import os
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
@@ -174,9 +177,7 @@ async def forage(ctx, location: int = None, modifier: int = None):
 
     await ctx.send(response)
 
-import threading
-from flask import Flask
-import os
+
 
 app = Flask('')
 

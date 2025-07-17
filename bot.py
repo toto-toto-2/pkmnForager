@@ -1,22 +1,6 @@
 import discord
 from discord.ext import commands
 import random
-import os
-import threading
-from flask import Flask
-import os
-
-app = Flask('')
-
-@app.route('/')
-def home():
-    return "Bot is alive!"
-
-def run():
-    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 8080)))
-
-# Start the web server in a separate thread
-threading.Thread(target=run).start()
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
@@ -190,4 +174,23 @@ async def forage(ctx, location: int = None, modifier: int = None):
 
     await ctx.send(response)
 
+import threading
+from flask import Flask
+import os
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is alive!"
+
+def run():
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
+
+# ✅ Start the Flask thread **after** defining `run`
+threading.Thread(target=run).start()
+
+# ✅ Then start the bot
 bot.run(TOKEN)
+

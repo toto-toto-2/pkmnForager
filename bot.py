@@ -52,7 +52,7 @@ def roll_bonus(name):
             "Galarica Wreath", "Masterpiece Teacup", "Metal Alloy", "Peat Block", "Sweet Apple",
             "Syrupy Apple", "Tart Apple", "Unremarkable Teacup", "Scroll of Darkness",
             "Scroll of Waters"
-        ]
+        ],
          "Common Fishing Encounter": [
             "Magikarp", "Magikarp", "Magikarp", "Magikarp", "Magikarp",
             "Tentacool", "Tentacool", "Tentacool", "Tentacool", "Tentacool",

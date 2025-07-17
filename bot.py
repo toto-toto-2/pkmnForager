@@ -177,7 +177,20 @@ async def forage(ctx, location: int = None, modifier: int = None):
 
     await ctx.send(response)
 
+PING_CHANNEL_ID = https://discord.com/channels/1370063776157798531/1395390696361296043  # replace with your target channel ID
 
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user} (ID: {bot.user.id})')
+    send_beep.start()
+
+@tasks.loop(minutes=12)
+async def send_beep():
+    channel = bot.get_channel(PING_CHANNEL_ID)
+    if channel:
+        await channel.send("beep")
+    else:
+        print("Channel not found, cannot send beep.")
 
 app = Flask('')
 

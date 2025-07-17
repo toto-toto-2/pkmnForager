@@ -135,6 +135,7 @@ def find_overlapping_groups(ranges, low, high, location, natural_roll):
 
 @bot.command(name='forage')
 async def forage(ctx, location: int = None, modifier: int = None):
+    print(f"forage command triggered with location={location} and modifier={modifier}")  # Debug print
     if location is None or modifier is None:
         menu = "**Foraging Locations:**\n" + "\n".join(
             f"[{num}] {name}" for num, name in location_names.items()
@@ -177,6 +178,10 @@ async def forage(ctx, location: int = None, modifier: int = None):
 
     await ctx.send(response)
 
+@bot.command()
+async def ping(ctx):
+    await ctx.send("pong")
+
 PING_CHANNEL_ID = 1395390696361296043  # replace with your target channel ID
 
 @bot.event
@@ -202,9 +207,8 @@ def run():
     port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
 
-# ✅ Start the Flask thread **after** defining `run`
+# Start the Flask thread
 threading.Thread(target=run).start()
 
-# ✅ Then start the bot
+# Start the bot
 bot.run(TOKEN)
-

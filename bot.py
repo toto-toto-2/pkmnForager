@@ -2,6 +2,22 @@ import discord
 from discord.ext import commands
 import random
 import os
+import threading
+from flask import Flask
+import os
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is alive!"
+
+def run():
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 8080)))
+
+# Start the web server in a separate thread
+threading.Thread(target=run).start()
+
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
@@ -162,14 +178,14 @@ async def forage(ctx, location: int = None, modifier: int = None):
             f"**Location:** {location_label}\n"
             f"**Roll:** {d100}\n"
             f"**Modified Range:** {min_roll} to {max_roll}\n"
-            f"**You found:**\n" + "\n".join(output)
+            f"**Your roll could be:**\n" + "\n".join(output)
         )
     else:
         response = (
             f"**Location:** {location_label}\n"
             f"**Roll:** {d100}\n"
             f"**Modified Range:** {min_roll} to {max_roll}\n"
-            "**You found nothing!**"
+            "**Your roll is nothing! (probably an error!)**"
         )
 
     await ctx.send(response)

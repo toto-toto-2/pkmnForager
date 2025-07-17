@@ -4,6 +4,8 @@ import random
 import threading
 from flask import Flask
 import os
+import aiohttp
+import asyncio
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
@@ -135,7 +137,6 @@ def find_overlapping_groups(ranges, low, high, location, natural_roll):
 
 @bot.command(name='forage')
 async def forage(ctx, location: int = None, modifier: int = None):
-    print(f"forage command triggered with location={location} and modifier={modifier}")  # Debug print
     if location is None or modifier is None:
         menu = "**Foraging Locations:**\n" + "\n".join(
             f"[{num}] {name}" for num, name in location_names.items()
@@ -178,9 +179,9 @@ async def forage(ctx, location: int = None, modifier: int = None):
 
     await ctx.send(response)
 
-@bot.command()
+@bot.command(name='ping')
 async def ping(ctx):
-    await ctx.send("pong")
+    await ctx.send("pong!")
 
 PING_CHANNEL_ID = 1395390696361296043  # replace with your target channel ID
 
@@ -188,6 +189,7 @@ PING_CHANNEL_ID = 1395390696361296043  # replace with your target channel ID
 async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     send_beep.start()
+    keep_alive_ping.start()
 
 @tasks.loop(minutes=12)
 async def send_beep():
@@ -196,6 +198,19 @@ async def send_beep():
         await channel.send("beep")
     else:
         print("Channel not found, cannot send beep.")
+
+@tasks.loop(minutes=5)
+async def keep_alive_ping():
+    url = "http://localhost:8080"  # Change this to your public URL if needed
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as resp:
+                if resp.status == 200:
+                    print("Keep-alive ping success")
+                else:
+                    print(f"Keep-alive ping failed: {resp.status}")
+    except Exception as e:
+        print(f"Keep-alive ping error: {e}")
 
 app = Flask('')
 

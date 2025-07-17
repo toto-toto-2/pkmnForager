@@ -44,7 +44,7 @@ def roll_bonus(name):
         ],
         "Evolution Item Wheel": [
             "Deep Sea Scale", "Deep Sea Tooth", "Dragon Scale", "Dragon Tooth", "Dubious Disc",
-            "Electirizer", "King’s Rock", "Magmarizer", "Metal Coat", "Oval Stone",
+            "Electirizer", "King's Rock", "Magmarizer", "Metal Coat", "Oval Stone",
             "Prism Scale", "Protector", "Black Sludge", "Razor Claw", "Razor Fang",
             "Gimmighoul Coin", "Reaper Cloth", "Sachet", "Upgrade", "Whipped Cream",
             "Sweet", "Black Belt", "Soft Sand", "Auspicious Armour", "Malicious Armour",

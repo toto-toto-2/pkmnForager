@@ -216,7 +216,7 @@ async def send_beep():
 
 @tasks.loop(minutes=5)
 async def keep_alive_ping():
-    url = "http://localhost:8080"  # Change this to your public URL if needed
+    url = "https://pkmnforager.onrender.com"  # Change this to your public URL if needed
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as resp:

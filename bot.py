@@ -165,7 +165,8 @@ async def forage(ctx, location: int = None, modifier: int = None):
 
     d100 = random.randint(1, 100)
     min_roll = max(1, d100 - modifier)
-    max_roll = min(100, d100 + modifier)
+    max_roll = d100 + modifier  # Allow going beyond 100!
+    
 
     groups = find_overlapping_groups(locations[location], min_roll, max_roll, location, d100)
 

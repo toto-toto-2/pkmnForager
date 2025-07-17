@@ -140,6 +140,7 @@ location_names = {
 def find_overlapping_groups(ranges, low, high, location, natural_roll):
     overlapping = []
     for (start, end, name) in ranges:
+        print(f"[DEBUG] Checking {start}-{end} ({name}) against range {low}-{high}")
         if location == 5 and name == "Shiny Pokémon Egg":
             if natural_roll in [99, 100]:
                 overlapping.append(name)

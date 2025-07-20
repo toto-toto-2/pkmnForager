@@ -43,17 +43,16 @@ def roll_bonus(name):
             "Leaf Stone", "Dawn Stone", "Moon Stone", "Mantis Claw"
         ],
         "Evolution Item Wheel": [
-            "Deep Sea Scale", "Deep Sea Tooth", "Dragon Scale", "Dragon Tooth", "Dubious Disc",
-            "Electirizer", "King's Rock", "Magmarizer", "Metal Coat", "Oval Stone",
-            "Prism Scale", "Protector", "Black Sludge", "Razor Claw", "Razor Fang",
-            "Gimmighoul Coin", "Reaper Cloth", "Sachet", "Upgrade", "Whipped Cream",
-            "Sweet", "Black Belt", "Soft Sand", "Auspicious Armour", "Malicious Armour",
-            "Rainbow Feather", "Black Augurite", "Chipped Pot", "Cracked Pot", "Galarica Cuff",
-            "Galarica Wreath", "Masterpiece Teacup", "Metal Alloy", "Peat Block", "Sweet Apple",
-            "Syrupy Apple", "Tart Apple", "Unremarkable Teacup", "Scroll of Darkness",
-            "Scroll of Waters"
+            ["Deep Sea Scale", "Deep Sea Tooth", "Dragon Scale", "Dragon Tooth", "Dubious Disc"],
+            ["Electirizer", "King’s Rock", "Magmarizer", "Metal Coat", "Oval Stone"],
+            ["Prism Scale", "Protector", "Black Sludge", "Razor Claw", "Razor Fang"],
+            ["Gimmighoul Coin", "Reaper Cloth", "Sachet", "Upgrade", "Whipped Cream"],
+            ["Sweet", "Black Belt", "Soft Sand", "Auspicious Armour", "Malicious Armour"],
+            ["Rainbow Feather", "Black Augurite", "Chipped Pot", "Cracked Pot", "Galarica Cuff"],
+            ["Galarica Wreath", "Masterpiece Teacup", "Metal Alloy", "Peat Block", "Sweet Apple"],
+            ["Syrupy Apple", "Tart Apple", "Unremarkable Teacup", "Scroll of Darkness", "Scroll of Waters"]
         ],
-         "Common Fishing Encounter": [
+        "Common Fishing Encounter": [
             "Magikarp", "Magikarp", "Magikarp", "Magikarp", "Magikarp",
             "Tentacool", "Tentacool", "Tentacool", "Tentacool", "Tentacool",
             "Basculin", "Basculin", "Basculin", "Feebas", "Feebas"
@@ -67,8 +66,15 @@ def roll_bonus(name):
             "Lapras", "Lapras", "Lapras", "Lapras", "Dratini"
         ],
     }
+
+    if name == "Evolution Item Wheel":
+        group_num = random.randint(1, 8)
+        group_items = tables["Evolution Item Wheel"][group_num - 1]
+        return f"Evolution Wheel - Group {group_num}:\n" + "\n".join(f"• {item}" for item in group_items)
+
     if name in tables:
         return f"{name} result: {random.choice(tables[name])}"
+
     return name
 
 # Loot Tables

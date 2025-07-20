@@ -233,17 +233,6 @@ async def send_beep():
     else:
         print("Channel not found, cannot send beep.")
 
-TARGET_CHANNEL_ID = 1334012734295117876  # Replace with the actual channel ID
-ROLE_ID = 1395437270844178573  # Your role ID
-
-@tasks.loop(hours=2)
-async def ping_role_every_2_hours():
-    channel = bot.get_channel(TARGET_CHANNEL_ID)
-    if channel:
-        await channel.send(f"<@&{ROLE_ID}> It's bumping time! Type `!bump`!")
-    else:
-        print("Channel not found, can't send role ping.")
-
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')

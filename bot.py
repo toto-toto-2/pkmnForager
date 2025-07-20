@@ -80,7 +80,8 @@ def roll_bonus(name):
 # Loot Tables
 locations = {
     1: [  # Werdun Hive's Burrows
-        (1, 10, "You trip over a web, alerting the cave’s bugs to your presence, you flee before they have a chance to surround you."),
+        (1, 1, "A Miguel hops into your backpack"),
+        (2, 10, "You trip over a web, alerting the cave’s bugs to your presence, you flee before they have a chance to surround you."),
         (11, 40, "2x Pokéballs"),
         (41, 60, "2x Potions"),
         (61, 80, "1x Dusk Ball"),

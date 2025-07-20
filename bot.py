@@ -148,13 +148,25 @@ def find_overlapping_groups(ranges, low, high, location, natural_roll):
     overlapping = []
     for (start, end, name) in ranges:
         print(f"[DEBUG] Checking {start}-{end} ({name}) against range {low}-{high}")
+
+        # Special check for Miguel
+        if location == 1 and name == "A Miguel hops into your backpack":
+            if natural_roll == 1:
+                overlapping.append(name)
+            continue
+
+        # Special check for Shiny Pokémon Egg
         if location == 5 and name == "Shiny Pokémon Egg":
             if natural_roll in [99, 100]:
                 overlapping.append(name)
             continue
+
+        # Normal range overlap check
         if not (end < low or start > high):
             overlapping.append(name)
+
     return overlapping
+
 
 @bot.command(name='forage')
 async def forage(ctx, location: int = None, modifier: int = None):
@@ -221,6 +233,23 @@ async def send_beep():
     else:
         print("Channel not found, cannot send beep.")
 
+TARGET_CHANNEL_ID = 1334012734295117876  # Replace with the actual channel ID
+ROLE_ID = 1395437270844178573  # Your role ID
+
+@tasks.loop(hours=2)
+async def ping_role_every_2_hours():
+    channel = bot.get_channel(TARGET_CHANNEL_ID)
+    if channel:
+        await channel.send(f"<@&{ROLE_ID}> It's bumping time! Type `!bump`!")
+    else:
+        print("Channel not found, can't send role ping.")
+
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user} (ID: {bot.user.id})')
+    send_beep.start()
+    keep_alive_ping.start()
+    ping_role_every_2_hours.start()  # ✅ Start the new task
 @tasks.loop(minutes=5)
 async def keep_alive_ping():
     url = "https://pkmnforager.onrender.com"  # Change this to your public URL if needed
